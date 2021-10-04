@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "moduleResolution": "node",
+    "target": "es6",
+    // 여기서 designViewer 폴더가 생기고 리소스를 가져오게 한다.
+    "outDir": "designViewer",
+    "lib": ["es6", "dom"],
+    "jsx": "preserve",
+    "rootDir": "..",
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true
+  }
+  //"exclude": ["node_modules"]
+}

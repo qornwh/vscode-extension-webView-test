@@ -1,0 +1,17 @@
+{
+  // 내가 몰랏던거 js는 이거에 포함 옵션을 안주면 컴파일이 안도는거였다. 그래서 예제 캣코딩에서 rootDir 에러표시가 안나는거 ...
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "dist",
+    "lib": ["es6"],
+    "rootDir": "src",
+    "sourceMap": true,
+    "strict": true /* enable all strict type-checking options */
+    /* Additional Checks */
+    // "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
+    // "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
+    // "noUnusedParameters": true,  /* Report errors on unused parameters. */
+  },
+  "exclude": ["node_modules", ".vscode-test", "**/design/tsconfig.json", "**/design/*.ts", "**/design/**/*.ts"]
+}

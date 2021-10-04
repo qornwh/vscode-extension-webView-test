@@ -1,0 +1,30 @@
+.mdRoot {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-template-rows: minmax(720px, auto);
+  grid-auto-columns: minmax(300px, auto);
+  background-color: lightblue;
+  min-width: 610px;
+}
+.mdEditor {
+  grid-column: 2;
+  grid-row: 1;
+  /*min-width: 100;*/
+  background-color: rgb(150, 210, 230);
+}
+.mdViewer {
+  grid-column: 1;
+  grid-row: 1;
+  /*min-width: 100;*/
+  background-color: rgb(150, 210, 230);
+  overflow: auto;
+}
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.md_Select {
+  background-color: rgb(184, 184, 255);
+}
