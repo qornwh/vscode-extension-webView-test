@@ -14,10 +14,35 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "package-explorer",
+          "title": "Package Explorer",
+          "icon": "design.svg"
+        }
+      ]
+    },
+    "views": {
+      "package-explorer": [
+        {
+          "id": "package-dependencies",
+          "name": "Dependencies"
+        },
+        {
+          "id": "package-outline",
+          "name": "Outline"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "testbbb.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "testbbb.savehelloWorld",
+        "title": "Save Hello World"
       }
     ]
   },

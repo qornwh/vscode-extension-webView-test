@@ -19,7 +19,25 @@ export function activate(context: vscode.ExtensionContext) {
     DesignPanel.createOrShow(context.extensionUri);
   });
 
+  let saveable = vscode.commands.registerCommand('testbbb.savehelloWorld', () => {
+    const panel = DesignPanel.currentPanel?.getPanel();
+    if (panel) {
+      const opt = {
+        default: context.extensionUri,
+        saveLabel: 'save',
+        title: '마크다운 파일 저장',
+      };
+      vscode.window.showSaveDialog(opt).then((fileUri) => {
+        if (fileUri) {
+          // 테스트
+          console.log('Selected file: ' + fileUri);
+        }
+      });
+    }
+  });
+
   context.subscriptions.push(disposable);
+  context.subscriptions.push(saveable);
 }
 
 // this method is called when your extension is deactivated
@@ -45,6 +63,10 @@ class DesignPanel {
     const panel = vscode.window.createWebviewPanel(DesignPanel.viewType, 'Design View', vscode.ViewColumn.One, getWebviewOptions(extensionUri));
 
     DesignPanel.currentPanel = new DesignPanel(panel, extensionUri);
+  }
+
+  public getPanel() {
+    return this._panel;
   }
 
   private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
@@ -144,6 +166,7 @@ class DesignPanel {
 function getWebviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptions {
   return {
     // Enable javascript in the webview
+    // 이거 해줘야 스크립트 추가 가능함
     enableScripts: true,
 
     // And restrict the webview to only loading content from our extension's `media` directory.
