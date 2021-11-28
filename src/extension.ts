@@ -24,9 +24,10 @@ export function activate(context: vscode.ExtensionContext) {
     if (panel) {
       const opt = {
         default: context.extensionUri,
-        saveLabel: 'save',
+        saveLabel: '저장',
         title: '마크다운 파일 저장',
       };
+      debugger;
       vscode.window.showSaveDialog(opt).then((fileUri) => {
         if (fileUri) {
           // 테스트

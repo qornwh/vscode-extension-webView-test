@@ -1,4 +1,5 @@
 import * as Marked from 'marked';
+import { MdTreeComp } from './mdTree';
 //const debounce = require('lodash/debounce');
 const style_md = 'border: solid; 1px;';
 //let current_md: Element = null;
@@ -10,11 +11,16 @@ abstract class MdRoot {
   protected element: Element | null;
   readonly style_md: string;
   static selectTarget: Element | null = null;
+  protected tagId: string;
+  private static mdTagName: string = 'mdTag';
+
+  private orgText: string = '';
 
   constructor(name: string) {
     // id , 아이디 만들어야 됨 이것에 대한 로직 필요, 물론 html의 id 아닌 개체 식별 id
     this.name = name;
     this.class = 'md_component ' + name + '_md';
+    this.orgText = '';
   }
 
   public coding(text: string): void {
@@ -22,6 +28,7 @@ abstract class MdRoot {
       //let _element = document.createElement('template');
       //_element.innerHTML = marked(text);
       this.element = new DOMParser().parseFromString(Marked.default(text), 'text/html').body.firstElementChild;
+      this.element.setAttribute(MdRoot.mdTagName, MdTreeComp.getInstance().getId().toString());
       if (this.element.tagName.toLowerCase() === 'p') {
         this.element = this.element.firstElementChild;
       }
@@ -30,6 +37,8 @@ abstract class MdRoot {
         this.element.addEventListener('mouseout', this.eventMouseOut, false);
         this.element.addEventListener('click', this.eventMouseSelect, false);
       }
+      this.orgText = text;
+      MdTreeComp.getInstance().setMdRootItem(this);
     } catch (error) {
       this.element = null;
       console.error('에러발생 :', error);
@@ -58,7 +67,7 @@ abstract class MdRoot {
   }
 
   public eventMouseSelect(e: Event) {
-    console.log('mouseSelect');
+    console.log('mouseSelect', this);
     let target: HTMLInputElement | HTMLElement = <HTMLInputElement>e.target;
     if (target?.parentElement?.getAttribute('class').includes('md_Select')) {
       return;
@@ -109,6 +118,10 @@ abstract class MdRoot {
         }
       }
     }
+  }
+
+  public getMdTagId() {
+    return this.getMdTagId;
   }
 
   public eventKeyBorad(e: Event) {}
